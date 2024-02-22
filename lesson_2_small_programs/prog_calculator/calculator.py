@@ -4,52 +4,75 @@
 # Perform the operation on the two numbers.
 # Print the result to the terminal.
 
-def prompt(message):
-    print(f"==> {message}")
+import json
+
+with open('calculator_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
+
+# Added json config file in lieu of prompt function to improve flexibility and internationalization.
+# def prompt(message): 
+#     print(f"==> {message}")
 
 def invalid_number(number_str):
     try:
-        int(number_str)
+        float(number_str)
     except ValueError:
         return True
 
     return False
 
-prompt('Welcome to Calculator!')
+def messages(message, lang="en"):
+    return MESSAGES[lang][message]
 
-# Ask the user for the first number.
-prompt("What's the first number?")
-number1 = input()
+print('Please select a language:\n"en": English; "fr": French; "de": German; "es": Spanish')
 
-while invalid_number(number1):
-    prompt("Hmm... that doesn't look like a valid number.")
+# Check for appropriate language selection.
+while True:
+    LANGUAGE = input()
+    if LANGUAGE in ["en", "fr", "de", "es"]:
+        break
+    print('Invalid input. Please select from the following:\n"en": English; "fr": French; "de": German; "es": Spanish')
+
+print(messages('welcome', LANGUAGE))
+
+while True:
+    # Ask the user for the first number.
+    print(messages('first_number', LANGUAGE))
     number1 = input()
 
-# Ask the user for the second number.
-prompt("What's the second number?")
-number2 = input()
+    while invalid_number(number1):
+        print(messages('invalid_number', LANGUAGE))
+        number1 = input()
 
-while invalid_number(number2):
-    prompt("Hmm... that doesn't look like a valid number.")
+    # Ask the user for the second number.
+    print(messages('second_number', LANGUAGE))
     number2 = input()
 
-# Ask the user what operation they'd like to perform.
-prompt('What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide')
-operation = input()
+    while invalid_number(number2):
+        print(messages('invalid_number', LANGUAGE))
+        number2 = input()
 
-while operation not in ["1", "2", "3", "4"]:
-    prompt('You must choose 1, 2, 3, or 4')
+    # Ask the user what operation they'd like to perform.
+
+    print(messages('operation', LANGUAGE))
     operation = input()
 
-match operation:
-    case '1': # '1' represents addition
-        output = int(number1) + int(number2)
-    case '2': # '2' represents subtraction
-        output = int(number1) - int(number2)
-    case '3': # '3' represents multiplcation
-        output = int(number1) * int(number2)
-    case '4': # '4' represents division
-        output = int(number1) / int(number2)
+    while operation not in ["1", "2", "3", "4"]:
+        print(messages('operation_selection', LANGUAGE))
+        operation = input()
 
+    match operation:
+        case '1': # '1' represents addition
+            output = float(number1) + float(number2)
+        case '2': # '2' represents subtraction
+            output = float(number1) - float(number2)
+        case '3': # '3' represents multiplcation
+            output = float(number1) * float(number2)
+        case '4': # '4' represents division
+            output = float(number1) / float(number2)
 
-prompt(f'The result is: {output}')
+    print(messages('result', LANGUAGE), output)
+    print(messages('repeat', LANGUAGE))
+    answer = input()
+    if answer.lower() != 'yes':
+        break

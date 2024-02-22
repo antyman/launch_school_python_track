@@ -1,0 +1,42 @@
+{
+    "en": {
+        "welcome": "==> Welcome to Calculator!",
+        "invalid_number": "==> Hmm... that doesn't look like a valid number.",
+        "first_number": "==> What's the first number?",
+        "second_number": "==> What's the second number?",
+        "operation": "==> What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+        "operation_selection": "==> You must choose 1, 2, 3, or 4",
+        "result": "==> The result is:",
+        "repeat": "==> Would you like to perform another calculation? (yes/no) "
+    },
+    "fr": {
+        "welcome": "==> Bienvenue sur Calculatrice!",
+        "invalid_number": "==> Hmm... ça ne ressemble pas à un numéro valide.",
+        "first_number": "==> Quel est le premier numéro?",
+        "second_number": "==> Quel est le deuxième numéro?",
+        "operation": "==> Quelle opération souhaitez-vous effectuer?\n1) Ajouter 2) Soustraire 3) Multiplier 4) Diviser",
+        "operation_selection": "==> Vous devez choisir 1, 2, 3 ou 4",
+        "result": "==> Le résultat est:",
+        "repeat": "==> Souhaitez-vous effectuer un autre calcul ? (yes/no) "
+    },
+    "de": {
+        "welcome": "==> Willkommen beim Rechner!",
+        "invalid_number": "==> Hmm... das sieht nicht nach einer gültigen Zahl aus.",
+        "first_number": "==> Wie lautet die erste Zahl?",
+        "second_number": "==> Wie lautet die zweite Zahl?",
+        "operation": "==> Welche Operation möchten Sie ausführen?\n1) Addieren 2) Subtrahieren 3) Multiplizieren 4) Dividieren",
+        "operation_selection": "==> Sie müssen 1, 2, 3 oder 4 auswählen",
+        "result": "==> Das Ergebnis ist:",
+        "repeat": "==> Möchten Sie eine weitere Berechnung durchführen? (yes/no) "
+    },
+    "es": {
+        "welcome": "==> ¡Bienvenido a Calculadora!",
+        "invalid_number": "==> Hmm... eso no parece un número válido.",
+        "first_number": "==> ¿Cuál es el primer número?",
+        "second_number": "==> ¿Cuál es el segundo número?",
+        "operation": "==> ¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+        "operation_selection": "==> Debes elegir 1, 2, 3 o 4",
+        "result": "==> El resultado es:",
+        "repeat": "==> ¿Le gustaría realizar otro cálculo? (yes/no) "
+    }
+}
