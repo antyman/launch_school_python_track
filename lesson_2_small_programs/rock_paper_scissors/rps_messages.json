@@ -6,5 +6,8 @@
     "tie": "Well, what do you know! It's a tie!",
     "input_alternative": "You may also input the first letter in each choice, or the first two letters for \"scissors\" and \"spock\".",
     "player_wins_match": "Congratulations! You've won the match!",
-    "computer_wins_match": "Computer won the match. Better luck next time."
+    "computer_wins_match": "Computer won the match. Better luck next time.",
+    "play_again": "That was a good game. Do you want to play again (y/n)? ",
+    "retry_play_again": "Please enter \"y\" or \"n\". ",
+    "goodbye": "We look forward to playing with you again!"
 }

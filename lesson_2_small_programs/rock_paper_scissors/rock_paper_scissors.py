@@ -1,4 +1,4 @@
-# rock_paper_scissors.py
+# rock_paper_scissors.pygi
 
 import json
 import random
@@ -25,16 +25,15 @@ def messages(message):
 def convert_to_full(player):
     if player == 'r':
         return 'rock'
-    elif player == 'p':
+    if player == 'p':
         return 'paper'
-    elif player == 'sc':
+    if player == 'sc':
         return 'scissors'
-    elif player == 'l':
+    if player == 'l':
         return 'lizard'
-    elif player == 'sp':
+    if player == 'sp':
         return 'spock'
-    else:
-        return player
+    return player
 
 def display_choices(player, computer):
     if player != computer:
@@ -51,12 +50,12 @@ def determine_winner(player, computer):
     if did_player_win is True:
         scoreboard['player'] += 1
         return 'player'
-    elif player == computer:
+    if player == computer:
         scoreboard['tie'] += 1
         return 'tie'
-    else:
-        scoreboard['computer'] += 1
-        return 'computer'
+
+    scoreboard['computer'] += 1
+    return 'computer'
 
 def display_round_winner(string):
     if string == 'player':
@@ -71,8 +70,6 @@ def display_score():
            f'Ties: {scoreboard["tie"]}.')
 
 messages('welcome')
-
-# messages('scores')
 
 # Loop to continue playing
 while True:
@@ -103,19 +100,19 @@ while True:
         if scoreboard['player'] == 3:
             messages('player_wins_match')
             break
-        elif scoreboard['computer'] == 3:
+        if scoreboard['computer'] == 3:
             messages('computer_wins_match')
             break
 
-    prompt("That was a good game. Do you want to play again (y/n)? ")
+    messages('play_again')
     answer = input().strip().lower()
     while True:
         if answer.startswith('y') or answer.startswith('n'):
             break
 
-        prompt('Please enter "y" or "n". ')
+        messages('retry_play_again')
         answer = input().strip().lower()
 
     if answer[0] == 'n':
-        prompt("We look forward to seeing you again.")
+        messages('goodbye')
         break
