@@ -1,11 +1,10 @@
 # rock_paper_scissors.py
 
-# Game flow:
-# 1. The user makes a choice
-# 2. The computer makes a choice
-# 3. The winner is displayed
-
+import json
 import random
+
+with open('rps_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
 
 VALID_USER_CHOICES = ['rock', 'r', 'paper', 'p', 'scissors', 'sc', 'lizard', 'l', 'spock', 'sp']
 COMPUTER_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
@@ -19,6 +18,9 @@ WINNING_COMBOS = {
 
 def prompt(message):
     print(f'==> {message}')
+
+def messages(message):
+    return prompt(MESSAGES[message])
 
 def convert_to_full(player):
     if player == 'r':
@@ -48,29 +50,29 @@ def determine_winner(player, computer):
 
     if did_player_win is True:
         scoreboard['player'] += 1
-        return "player"
+        return 'player'
     elif player == computer:
         scoreboard['tie'] += 1
-        return "tie"
+        return 'tie'
     else:
         scoreboard['computer'] += 1
-        return "computer"
+        return 'computer'
 
 def display_round_winner(string):
-    if string == "player":
-        prompt("You win this round!")
-    elif string == "computer":
-        prompt("Computer wins this round!")
+    if string == 'player':
+        messages('player_wins_round')
+    elif string == 'computer':
+        messages('computer_wins_round')
     else:
-        prompt("It's a tie!")
+        messages('tie')
 
 def display_score():
-    prompt(f"Player: {scoreboard['player']}. Computer: {scoreboard['computer']}. "
-           f"Ties: {scoreboard['tie']}.")
+    prompt(f'Player: {scoreboard["player"]}. Computer: {scoreboard["computer"]}. '
+           f'Ties: {scoreboard["tie"]}.')
 
-# Welcome message
-prompt('Welcome to Rock, Paper, Scissors, Lizard, Spock.\n'
-       'Best of 5 wins the match. Good luck.')
+messages('welcome')
+
+# messages('scores')
 
 # Loop to continue playing
 while True:
@@ -80,12 +82,11 @@ while True:
     while True:
         prompt(f'--- Round {round_count} ---')
         prompt(f'Choose one: {", ".join(COMPUTER_CHOICES)}.')
-        prompt('You may also input the first letter in each choice, '
-                'or the first two letters for "scissors" and "spock".')
-        choice = input().lower()
+        messages('input_alternative')
+        choice = input().strip().lower()
         while choice not in VALID_USER_CHOICES:
-            prompt("That's not a valid choice.")
-            choice = input()
+            messages('invalid_choice')
+            choice = input().strip().lower()
         choice = convert_to_full(choice)
 
         computer_choice = random.choice(COMPUTER_CHOICES)
@@ -93,8 +94,6 @@ while True:
 
         winner = determine_winner(choice, computer_choice)
         display_round_winner(winner)
-
-        # calculate_score(winner)
         display_score()
 
         round_count += 1
@@ -102,20 +101,20 @@ while True:
         # Stop playing once any player reaches 3 points,
         # which guarantees that they win the Best of 5 match.
         if scoreboard['player'] == 3:
-            prompt("Congratulations! You've won the match!")
+            messages('player_wins_match')
             break
         elif scoreboard['computer'] == 3:
-            prompt("Computer won the match. Better luck next time.")
+            messages('computer_wins_match')
             break
 
     prompt("That was a good game. Do you want to play again (y/n)? ")
-    answer = input().lower()
+    answer = input().strip().lower()
     while True:
         if answer.startswith('y') or answer.startswith('n'):
             break
 
         prompt('Please enter "y" or "n". ')
-        answer = input().lower()
+        answer = input().strip().lower()
 
     if answer[0] == 'n':
         prompt("We look forward to seeing you again.")
